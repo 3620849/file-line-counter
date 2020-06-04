@@ -61,7 +61,7 @@ public class SimpleRowCounter implements RowCounter {
             e.printStackTrace();
         }
         //remove all comments
-        code = code.replaceAll("/\\*(?:.|[\\n\\r])*?\\*/", "");
+        code = code.replaceAll("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)", "");
 
         String[] split = code.split("\n");
         List<String> list = Arrays.asList(split);
@@ -76,7 +76,7 @@ public class SimpleRowCounter implements RowCounter {
         StringBuilder everything = new StringBuilder();
         String line;
         while ((line = buffIn.readLine()) != null) {
-            everything.append("\n" + line);
+            everything.append( line+"\n");
         }
         return everything.toString();
     }
